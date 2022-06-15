@@ -11,7 +11,7 @@ const port = process.env.PORT || 5000;
 server.use(express.json());
 server.use(cors());
 server.get("api/weather/:lat,:lon", getWeather);
-server.use(express.static(path.resolve([__dirname, "./weatherapp/build"])));
+server.use(express.static(path.resolve(__dirname, "./weatherapp/build")));
 server.listen(port, () => {
   console.log(`Server is up and listening on Port ${port}`);
 });
