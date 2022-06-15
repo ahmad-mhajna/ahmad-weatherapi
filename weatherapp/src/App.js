@@ -2,13 +2,14 @@ import "./App.css";
 import axios from "axios";
 import { useState } from "react";
 import moment from "moment";
-
+const url =
+  process.env.NODE_ENV === "production" ? "api" : "http://localhost:5000/api";
 function App() {
   const [location, setlocation] = useState({ lat: 0, lon: 0 });
   const [data, setData] = useState();
   async function getdata() {
     const { data } = await axios.get(
-      `http://localhost:5000/weather/${location.lat},${location.lon}`
+      `${url}/weather/${location.lat},${location.lon}`
     );
     setData(data.data);
   }
