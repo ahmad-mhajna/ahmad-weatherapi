@@ -10,8 +10,7 @@ function App() {
     const { data } = await axios.get(
       `http://localhost:5000/weather/${location.lat},${location.lon}`
     );
-    console.log(data);
-    setData(data);
+    setData(data.data);
   }
   return (
     <div className="App">
@@ -37,14 +36,15 @@ function App() {
           Submit
         </button>
       </div>
-      <div>
-        {/* {data?.timelines[0].intervals.map((interval) => {
+      <div className="container">
+        {data?.timelines[0].intervals.map((interval) => {
           return (
             <div>
-              <p>Hour:{moment(interval.startTime).format("HH-MM-SS")}</p>
+              <p>Hour:{moment(interval.startTime).format("HHA")}</p>
+              <p>Temp:{interval.values.temperature}</p>
             </div>
           );
-        })} */}
+        })}
       </div>
     </div>
   );

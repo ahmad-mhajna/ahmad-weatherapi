@@ -18,7 +18,15 @@ server.listen(port, () => {
 async function getWeather(req, res) {
   try {
     const { data } = await axios.get(
-      `https://api.tomorrow.io/v4/timelines?location=${req.body.lat},${req.body.lon}&fields=temperature&timesteps=1h&units=metric&apikey=${apiKey}`
+      `https://api.tomorrow.io/v4/timelines?location=${req.params.lat},${
+        req.params.lon
+      }&startTime=${moment()
+        .hour(15)
+        .minute(0)
+        .toISOString()}&endTime=${moment()
+        .hour(27)
+        .minute(0)
+        .toISOString()}&fields=temperature&timesteps=1h&units=metric&apikey=${apiKey}`
     );
     res.send(data);
   } catch (e) {
